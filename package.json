@@ -1,0 +1,17 @@
+{
+  "name": "@rappopo/cuk-i18n",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ardhi Lukianto <ardhi@lukianto.com>",
+  "license": "MIT",
+  "dependencies": {
+    "i18next": "^11.3.3",
+    "i18next-intervalplural-postprocessor": "^1.0.2",
+    "i18next-sprintf-postprocessor": "^0.2.2",
+    "koa-i18next-detector": "^0.7.1"
+  }
+}
