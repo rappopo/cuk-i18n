@@ -11,22 +11,25 @@ module.exports = function(cuk) {
   const allowSession = ctx => cfg.detector.method.indexOf('session') > -1
     && ctx.session
 
+  const setLang = (ctx, lang) => {
+    ctx.set('Content-Language', lang)
+    if (allowSession(ctx)) ctx.session[cfg.detector.fieldName] = lang
+    if (allowCookie(ctx)) ctx.cookies.set(cfg.detector.fieldName, lang)
+  }
+
   return () => {
     return async (ctx, next) => {
       let i18n = i18next.cloneInstance({ initImmediate: false })
       ctx.i18n = i18n
+      ctx.i18n.ts = (key, ...args) => {
+        return i18n.t(key, { postProcess: 'sprintf', sprintf: args })
+      }
       i18n.on('languageChanged', lang => {
-        ctx.state[cfg.detector.fieldName] = lang
-        ctx.set('Content-Language', lang)
-        if (allowSession(ctx)) ctx.session[cfg.detector.fieldName] = lang
-        if (allowCookie(ctx)) ctx.cookies.set(cfg.detector.fieldName, lang)
+        setLang(ctx, lang)
       })
-      let lang
-      if (allowSession(ctx)) lang = ctx.session[cfg.detector.fieldName]
-      if (!lang && allowCookie(ctx))
-        lang = ctx.cookies.get(cfg.detector.fieldName)
-      if (!lang && i18next.services.languageDetector)
-        lang = i18next.services.languageDetector.detect(ctx)
+      let lang = i18next.services.languageDetector
+        ? i18next.services.languageDetector.detect(ctx)
+        : null
       i18n.changeLanguage(lang || i18next.options.fallbackLng[0])
       return next()
     }
