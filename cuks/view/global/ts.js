@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = function(cuk) {
-  const { helper } = cuk.lib
+  const { helper } = cuk.pkg.core.lib
 
   return function (key, ...args) {
     if (!this.env.i18n) return key

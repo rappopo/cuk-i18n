@@ -9,7 +9,7 @@ module.exports = function(cuk){
   let id = 'i18n',
     pkg = cuk.pkg[id],
     cfg = pkg.cfg.common
-  const { _, debug, helper, path, fs } = cuk.lib
+  const { _, debug, helper, path, fs } = cuk.pkg.core.lib
 
   pkg.lib.i18next = i18next
 

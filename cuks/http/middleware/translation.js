@@ -1,7 +1,7 @@
 'use script'
 
 module.exports = function(cuk) {
-  const { _ } = cuk.lib
+  const { _ } = cuk.pkg.core.lib
   const pkg = cuk.pkg.i18n,
     cfg = pkg.cfg.common,
     i18next = pkg.lib.i18next

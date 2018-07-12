@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = function(cuk) {
-  const { helper } = cuk.lib
+  const { helper } = cuk.pkg.core.lib
 
   const patchResRender = () => {
     const fn = (ctx, env) => {
