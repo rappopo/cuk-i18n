@@ -36,7 +36,7 @@ module.exports = function(cuk){
     .use(intvPlural)
     .init(opts)
 
-    helper('core:bootTrace')('%A Loading languages...', null)
+    helper('core:bootTrace')('|  |- Loading languages...')
     require('./lib/load_lang')(cuk)
     resolve(true)
   })
