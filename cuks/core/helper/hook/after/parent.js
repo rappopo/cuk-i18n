@@ -14,7 +14,6 @@ module.exports = function(cuk) {
           delete env.i18n
           ctx.type = ctx.type || 'text/html'
           ctx.body = body
-          return
         } catch (e) {
           cuk.pkg.view.trace('Render error: %', e.message)
         }

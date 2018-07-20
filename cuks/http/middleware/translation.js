@@ -21,7 +21,8 @@ module.exports = function(cuk) {
     return async (ctx, next) => {
       let i18n = i18next.cloneInstance({ initImmediate: false })
       ctx.i18n = i18n
-      ctx.i18n.ts = (key, ...args) => {
+      ctx.t = i18n.t
+      ctx.ts = (key, ...args) => {
         return i18n.t(key, { postProcess: 'sprintf', sprintf: args })
       }
       i18n.on('languageChanged', lang => {
