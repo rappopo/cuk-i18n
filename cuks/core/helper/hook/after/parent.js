@@ -8,14 +8,14 @@ module.exports = function(cuk) {
       return async (view, context) => {
         try {
           context = helper('core:merge')(ctx.state, context)
-          view = helper('view:resolveRoute')(view, ctx._matchedRouteName) + '.html'
+          view = helper('view:resolveRoute')(view, ctx) + '.html'
           env.i18n = ctx.i18n
           const body = await env.render(view, context)
           delete env.i18n
           ctx.type = ctx.type || 'text/html'
           ctx.body = body
         } catch (e) {
-          cuk.pkg.view.trace('Render error: %', e.message)
+          cuk.pkg.view.trace('Render error: %s', e.message)
         }
       }
     }
@@ -25,15 +25,15 @@ module.exports = function(cuk) {
 
   const patchResRenderString = () => {
     const fn = (ctx, env) => {
-      return async (view, context) => {
+      return async (text, context) => {
         try {
           context = helper('core:merge')(ctx.state, context)
           env.i18n = ctx.i18n
-          let result = await env.renderString(string, context)
+          let result = await env.renderString(text, context)
           delete env.i18n
           return result
         } catch (e) {
-          cuk.pkg.view.pkg.trace('Render string error: %', e.message)
+          cuk.pkg.view.trace('Render string error: %s', e.message)
         }
       }
     }
