@@ -5,7 +5,7 @@ const sprintf = require('i18next-sprintf-postprocessor')
 const intvPlural = require('i18next-intervalplural-postprocessor')
 const Detector = require('koa-i18next-detector').default
 
-module.exports = function(cuk){
+module.exports = function (cuk){
   let id = 'i18n',
     pkg = cuk.pkg[id],
     cfg = pkg.cfg.common
