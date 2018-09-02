@@ -1,6 +1,6 @@
 {
   "name": "@rappopo/cuk-i18n",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Rappopo CUK Language & Internationalization Library",
   "main": "index.js",
   "scripts": {
@@ -8,6 +8,10 @@
   },
   "author": "Ardhi Lukianto <ardhi@lukianto.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rappopo/cuk-i18n.git"
+  },
   "dependencies": {
     "i18next": "^11.3.3",
     "i18next-intervalplural-postprocessor": "^1.0.2",
