@@ -1,14 +1,12 @@
 {
-  "common": {
-    "language": {
-      "supported": ["en", "id"],
-      "fallback": "en",
-      "fixed": false
-    },
-    "detector": {
-      "method": ["querystring", "path", "session", "cookie", "header"],
-      "fieldName": "lang",
-      "cache": ["cookie"]
-    }
+  "language": {
+    "supported": ["en", "id"],
+    "fallback": "en",
+    "fixed": false
+  },
+  "detector": {
+    "method": ["querystring", "path", "session", "cookie", "header"],
+    "fieldName": "lang",
+    "cache": ["cookie"]
   }
 }

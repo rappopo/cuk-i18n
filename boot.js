@@ -5,11 +5,10 @@ const sprintf = require('i18next-sprintf-postprocessor')
 const intvPlural = require('i18next-intervalplural-postprocessor')
 const Detector = require('koa-i18next-detector').default
 
-module.exports = function (cuk){
-  let id = 'i18n',
-    pkg = cuk.pkg[id],
-    cfg = pkg.cfg.common
-  const { _, debug, helper, path, fs } = cuk.pkg.core.lib
+module.exports = function (cuk) {
+  const { _, helper, config } = cuk.pkg.core.lib
+  const pkg = cuk.pkg['i18n']
+  const cfg = config('i18n')
 
   pkg.lib.i18next = i18next
 
@@ -20,8 +19,7 @@ module.exports = function (cuk){
       detection: {
         order: cfg.detector.method,
         caches: cfg.detector.cache
-      },
-//      overloadTranslationOptionHandler: sprintf.overloadTranslationOptionHandler
+      }
     }
     _.each(['querystring', 'param', 'cookie', 'header', 'session'], m => {
       opts.detection['lookup' + _.upperFirst(m)] = cfg.detector.method.indexOf(m) > -1
@@ -31,10 +29,10 @@ module.exports = function (cuk){
     if (_.isString(cfg.language.fixed) && !_.isEmpty(cfg.language.fixed)) opts.lng = cfg.language.fixed
 
     i18next
-    .use(new Detector())
-    .use(sprintf)
-    .use(intvPlural)
-    .init(opts)
+      .use(new Detector())
+      .use(sprintf)
+      .use(intvPlural)
+      .init(opts)
 
     helper('core:trace')('|  |- Loading languages...')
     require('./lib/load_lang')(cuk)
