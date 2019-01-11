@@ -6,9 +6,9 @@ const intvPlural = require('i18next-intervalplural-postprocessor')
 const Detector = require('koa-i18next-detector').default
 
 module.exports = function (cuk) {
-  const { _, helper, config } = cuk.pkg.core.lib
+  const { _, helper } = cuk.pkg.core.lib
   const pkg = cuk.pkg['i18n']
-  const cfg = config('i18n')
+  const cfg = helper('core:config')('i18n')
 
   pkg.lib.i18next = i18next
 

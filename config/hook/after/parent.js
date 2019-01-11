@@ -1,8 +1,8 @@
 'use strict'
 
 module.exports = function (cuk) {
-  const { _, helper, config } = cuk.pkg.core.lib
-  const cfg = _.get(config('i18n'), 'detector', {})
+  const { _, helper } = cuk.pkg.core.lib
+  const cfg = helper('core:config')('i18n', 'detector', {})
 
   return new Promise((resolve, reject) => {
     if (cfg.method.indexOf('path') === -1) return resolve('Disabled ⇒ Path detector')

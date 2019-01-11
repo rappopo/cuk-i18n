@@ -1,13 +1,13 @@
 'use script'
 
 module.exports = function (cuk) {
-  const { _, config } = cuk.pkg.core.lib
+  const { helper } = cuk.pkg.core.lib
   const pkg = cuk.pkg.i18n
-  const cfg = config('common')
+  const cfg = helper('core:config')('i18n')
   const { i18next } = pkg.lib
 
   const allowCookie = ctx => cfg.detector.method.indexOf('cookie') > -1 &&
-    _.get(config('rest'), 'mount') !== ctx.router.opts.prefix
+    helper('core:config')('rest', 'mount') !== ctx.router.opts.prefix
   const allowSession = ctx => cfg.detector.method.indexOf('session') > -1 && ctx.session
 
   const setLang = (ctx, lang) => {
